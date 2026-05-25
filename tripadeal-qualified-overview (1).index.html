@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualified AI SDR · Trip A Deal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --tad-orange: #E8521A;
+    --tad-orange-light: #F5784A;
+    --tad-orange-bg: #FEF2EC;
+    --tad-navy: #1A2B4A;
+    --tad-navy-mid: #2C3E5E;
+    --tad-sky: #D6ECF6;
+    --tad-sky-mid: #4AA8D4;
+    --tad-sky-dark: #1A6E9A;
+    --tad-sand: #F7F3EE;
+    --tad-sand-mid: #E8E0D4;
+    --tad-text: #1A2B4A;
+    --tad-text-muted: #5A6B80;
+    --tad-white: #FFFFFF;
+    --tad-green: #1E7C52;
+    --tad-green-bg: #EBF7F1;
+    --radius: 12px;
+    --radius-lg: 18px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--tad-text);
+    background: var(--tad-white);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--tad-navy);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; gap: 0; height: 56px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    color: var(--tad-white);
+    font-size: 1.15rem;
+    margin-right: auto;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo .logo-mark {
+    width: 28px; height: 28px;
+    background: var(--tad-orange);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo .logo-mark svg { width: 16px; height: 16px; fill: white; }
+  .nav-pill {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+    padding: 4px 12px; border-radius: 20px;
+    margin-right: 1rem;
+  }
+  nav a {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.82rem;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 56px; display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  nav a:hover { color: white; border-bottom-color: var(--tad-orange-light); }
+
+  /* HERO */
+  .hero {
+    background: var(--tad-navy);
+    padding: 5rem 2.5rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(232,82,26,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: 30%;
+    width: 400px; height: 300px;
+    background: radial-gradient(circle, rgba(74,168,212,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 780px; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,82,26,0.18);
+    border: 1px solid rgba(232,82,26,0.35);
+    color: var(--tad-orange-light);
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em { color: var(--tad-orange-light); font-style: italic; }
+  .hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--tad-orange);
+    color: white;
+    padding: 11px 24px;
+    border-radius: var(--radius);
+    font-weight: 500; font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--tad-orange-light); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.75);
+    padding: 11px 24px;
+    border-radius: var(--radius);
+    font-weight: 500; font-size: 0.9rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: white; }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--tad-sand);
+    border-bottom: 1px solid var(--tad-sand-mid);
+    padding: 1.5rem 2.5rem;
+    display: flex; gap: 3rem; align-items: center; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; color: var(--tad-orange); line-height: 1;
+  }
+  .stat-item .label { font-size: 0.78rem; color: var(--tad-text-muted); margin-top: 2px; }
+  .stats-bar .divider { width: 1px; height: 40px; background: var(--tad-sand-mid); }
+
+  /* SECTION */
+  section { padding: 5rem 2.5rem; }
+  section.alt { background: var(--tad-sand); }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--tad-orange); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    color: var(--tad-navy); line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+  .section-title em { color: var(--tad-orange); font-style: italic; }
+  .section-lead {
+    font-size: 1rem; color: var(--tad-text-muted);
+    max-width: 620px; line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  /* PROBLEM BLOCK */
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  @media(max-width:640px){ .problem-grid { grid-template-columns: 1fr; } }
+  .problem-card {
+    background: var(--tad-white);
+    border: 1px solid var(--tad-sand-mid);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+  .problem-card .icon {
+    width: 38px; height: 38px;
+    background: var(--tad-orange-bg);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.85rem;
+  }
+  .problem-card .icon svg { width: 20px; height: 20px; stroke: var(--tad-orange); fill: none; stroke-width: 1.8; }
+  .problem-card h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .problem-card p { font-size: 0.875rem; color: var(--tad-text-muted); line-height: 1.65; }
+
+  /* SOLUTION CARDS */
+  .sol-header {
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .sol-num {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: var(--tad-navy);
+    color: white;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sol-meta { flex: 1; }
+  .sol-meta .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tad-orange); margin-bottom: 0.25rem; }
+  .sol-meta h2 { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: var(--tad-navy); line-height: 1.25; }
+  .sol-meta h2 em { color: var(--tad-sky-dark); font-style: italic; }
+  .sol-meta p { font-size: 0.9rem; color: var(--tad-text-muted); margin-top: 0.4rem; }
+
+  /* INFO COLS */
+  .info-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+  @media(max-width:640px){ .info-cols { grid-template-columns: 1fr; } }
+  .info-col h3 { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--tad-navy); margin-bottom: 0.75rem; }
+  .info-col p { font-size: 0.9rem; color: var(--tad-text-muted); line-height: 1.7; }
+  .info-col ul { list-style: none; }
+  .info-col ul li { font-size: 0.88rem; color: var(--tad-text-muted); padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
+  .info-col ul li::before { content: '→'; position: absolute; left: 0; color: var(--tad-orange); font-size: 0.8rem; }
+
+  /* ANIMATION BOX */
+  .anim-box {
+    background: var(--tad-white);
+    border: 1px solid var(--tad-sand-mid);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+  }
+  .anim-header {
+    background: var(--tad-navy);
+    padding: 0.85rem 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .anim-header .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .anim-header .d1 { background: #E8521A; }
+  .anim-header .d2 { background: #F5784A; opacity: 0.6; }
+  .anim-header .d3 { background: #F5784A; opacity: 0.3; }
+  .anim-header .title { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.55); margin-left: 4px; }
+  .anim-header .replay-btn {
+    margin-left: auto;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.72rem; font-weight: 500;
+    padding: 4px 12px; border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .anim-header .replay-btn:hover { background: rgba(255,255,255,0.18); }
+  .anim-body { padding: 1.5rem; }
+
+  /* ANIMATION SCENARIOS */
+  .scenario-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:640px){ .scenario-pair { grid-template-columns: 1fr; } }
+  .scenario {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--tad-sand-mid);
+  }
+  .scenario-tag {
+    padding: 0.5rem 1rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .scenario-tag.before { background: #FEE2E2; color: #991B1B; }
+  .scenario-tag.after { background: var(--tad-green-bg); color: var(--tad-green); }
+  .scenario-content { padding: 1rem; background: var(--tad-sand); }
+  .scenario-content p { font-size: 0.85rem; color: var(--tad-text-muted); line-height: 1.65; margin-bottom: 0.5rem; }
+  .scenario-content p:last-child { margin-bottom: 0; }
+  .scenario-content strong { color: var(--tad-text); font-weight: 600; }
+
+  /* TIMELINE ANIM */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--tad-sand-mid); }
+  .tl-item { position: relative; margin-bottom: 1.25rem; opacity: 0; transform: translateY(8px); transition: opacity 0.4s, transform 0.4s; }
+  .tl-item.show { opacity: 1; transform: translateY(0); }
+  .tl-item::before { content: ''; position: absolute; left: -1.5rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--tad-orange); }
+  .tl-item .time { font-size: 0.72rem; font-weight: 600; color: var(--tad-text-muted); margin-bottom: 2px; }
+  .tl-item .event { font-size: 0.88rem; color: var(--tad-text); line-height: 1.5; }
+  .tl-item .event strong { color: var(--tad-orange); }
+  .tl-item.final::before { background: var(--tad-green); }
+  .tl-item.final .event { color: var(--tad-green); font-weight: 500; }
+
+  /* CHAT ANIM */
+  .chat-window {
+    background: white;
+    border: 1px solid var(--tad-sand-mid);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .chat-header {
+    background: var(--tad-sky);
+    padding: 0.65rem 1rem;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--tad-sand-mid);
+  }
+  .chat-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--tad-sky-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; color: white;
+  }
+  .chat-name { font-size: 0.82rem; font-weight: 600; color: var(--tad-navy); }
+  .chat-sub { font-size: 0.72rem; color: var(--tad-text-muted); }
+  .chat-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.65rem; min-height: 160px; }
+  .bubble {
+    max-width: 82%; padding: 0.55rem 0.85rem;
+    border-radius: 12px; font-size: 0.83rem; line-height: 1.55;
+    opacity: 0; transform: translateY(6px); transition: opacity 0.35s, transform 0.35s;
+  }
+  .bubble.show { opacity: 1; transform: translateY(0); }
+  .bubble.bot { background: var(--tad-sky); color: var(--tad-navy-mid); align-self: flex-start; border-bottom-left-radius: 3px; }
+  .bubble.user { background: var(--tad-orange); color: white; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .booking-card {
+    background: var(--tad-sand); border: 1px solid var(--tad-sand-mid);
+    border-radius: 8px; padding: 0.65rem 0.85rem;
+    font-size: 0.78rem; max-width: 82%;
+    opacity: 0; transform: translateY(6px); transition: opacity 0.35s, transform 0.35s;
+  }
+  .booking-card.show { opacity: 1; transform: translateY(0); }
+  .booking-card .bk-title { font-weight: 600; color: var(--tad-navy); margin-bottom: 4px; }
+  .booking-card .bk-row { color: var(--tad-text-muted); margin-bottom: 2px; }
+  .booking-card .bk-cta {
+    display: inline-block; margin-top: 6px;
+    background: var(--tad-orange); color: white;
+    font-size: 0.75rem; font-weight: 500;
+    padding: 4px 14px; border-radius: 6px;
+  }
+
+  /* EMAIL ANIM */
+  .email-sequence { display: flex; flex-direction: column; gap: 0.75rem; }
+  .email-card {
+    background: white;
+    border: 1px solid var(--tad-sand-mid);
+    border-left: 3px solid var(--tad-orange);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    opacity: 0; transform: translateX(-8px); transition: opacity 0.4s, transform 0.4s;
+  }
+  .email-card.show { opacity: 1; transform: translateX(0); }
+  .email-card .email-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+  .email-card .email-from { font-size: 0.72rem; font-weight: 600; color: var(--tad-navy); }
+  .email-card .email-time { font-size: 0.7rem; color: var(--tad-text-muted); margin-left: auto; }
+  .email-card .email-subj { font-size: 0.82rem; font-weight: 500; color: var(--tad-text); margin-bottom: 3px; }
+  .email-card .email-prev { font-size: 0.78rem; color: var(--tad-text-muted); }
+  .email-reply {
+    background: var(--tad-green-bg);
+    border-left-color: var(--tad-green);
+  }
+  .email-reply .email-from { color: var(--tad-green); }
+  .outcome-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--tad-green-bg);
+    border: 1px solid #A7D9C0;
+    color: var(--tad-green);
+    font-size: 0.8rem; font-weight: 500;
+    padding: 6px 14px; border-radius: 20px;
+    margin-top: 0.5rem;
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .outcome-pill.show { opacity: 1; }
+
+  /* REQUIREMENTS */
+  .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  .req-card {
+    background: var(--tad-white);
+    border: 1px solid var(--tad-sand-mid);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+  }
+  .req-card .req-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--tad-text-muted); margin-bottom: 0.3rem; }
+  .req-card .req-val { font-size: 0.9rem; font-weight: 500; color: var(--tad-navy); }
+
+  /* SEPARATOR */
+  .sol-divider { border: none; border-top: 1px solid var(--tad-sand-mid); margin: 4rem 0; }
+
+  /* SUMMARY TABLE */
+  .summary-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .summary-table th {
+    text-align: left; padding: 0.75rem 1rem;
+    background: var(--tad-navy); color: rgba(255,255,255,0.75);
+    font-weight: 500; font-size: 0.78rem;
+  }
+  .summary-table th:first-child { border-radius: 8px 0 0 0; }
+  .summary-table th:last-child { border-radius: 0 8px 0 0; }
+  .summary-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--tad-sand-mid);
+    color: var(--tad-text);
+    vertical-align: top;
+  }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .summary-table tr:nth-child(even) td { background: var(--tad-sand); }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px; border-radius: 20px;
+    font-size: 0.74rem; font-weight: 500;
+  }
+  .tag-low { background: var(--tad-green-bg); color: var(--tad-green); }
+  .tag-med { background: #FEF3C7; color: #92400E; }
+  .tag-high { background: #FEE2E2; color: #991B1B; }
+
+  /* FOOTER */
+  footer {
+    background: var(--tad-navy);
+    padding: 2rem 2.5rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  footer .f-brand { font-family: 'DM Serif Display', serif; color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+
+  /* PROVISIONING */
+  .provision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media(max-width:640px){ .provision-grid { grid-template-columns: 1fr; } }
+  .provision-item {
+    display: flex; gap: 1rem;
+    background: var(--tad-white);
+    border: 1px solid var(--tad-sand-mid);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+  }
+  .provision-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--tad-navy);
+    color: white; font-size: 0.8rem; font-weight: 600;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .provision-item h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .provision-item p { font-size: 0.82rem; color: var(--tad-text-muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    Trip A Deal
+  </a>
+  <span class="nav-pill">Salesforce · Confidential</span>
+  <a href="#sol-website">Website Agent</a>
+  <a href="#sol-nurture">Lead Nurture</a>
+  <a href="#sol-conversion">Conversion</a>
+  <a href="#provision">Provisioning</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Qualified from Salesforce · AI SDR Agent Overview
+    </div>
+    <h1>Turn every holiday enquiry into a <em>booked conversation.</em></h1>
+    <p>Trip A Deal drives thousands of inbound visitors daily — people researching, comparing, and dreaming about their next holiday. Qualified's Piper engages them in real time, qualifies their intent, and books a call with your travel consultants before they leave the site or cool off.</p>
+    <div class="hero-links">
+      <a href="#sol-website" class="btn-primary">See the solutions →</a>
+      <a href="#provision" class="btn-ghost">Provisioning requirements</a>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="num">4×</div><div class="label">More conversations</div></div>
+  <div class="divider"></div>
+  <div class="stat-item"><div class="num">3×</div><div class="label">More meetings booked</div></div>
+  <div class="divider"></div>
+  <div class="stat-item"><div class="num">2×</div><div class="label">Pipeline growth</div></div>
+  <div class="divider"></div>
+  <div class="stat-item"><div class="num">600+</div><div class="label">Companies using Piper</div></div>
+  <div class="divider"></div>
+  <div class="stat-item"><div class="num">30 days</div><div class="label">Typical go-live</div></div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="section-inner">
+    <div class="section-eyebrow">The challenge</div>
+    <h2 class="section-title">The traditional travel enquiry funnel <em>leaks.</em></h2>
+    <p class="section-lead">Trip A Deal's website and email programmes generate significant inbound demand. But the conversion layer — turning interest into a conversation — relies on slow, manual follow-up that lets warm leads go cold.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>Leads sit in a queue for hours</h4>
+        <p>Holiday shoppers compare 3–4 providers simultaneously. A 90-minute response window is the difference between a booking and a lost customer.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4>Consultants are capacity constrained</h4>
+        <p>Your best consultants only manually work the highest-intent enquiries. Medium and low-intent leads — who just need a nudge — fall through entirely.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h4>Nurture emails are one-size-fits-all</h4>
+        <p>Rules-based drip sequences send the same content to a cruiser and a gap-year backpacker. Personalisation at scale is impossible without AI.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h4>Website traffic doesn't become pipeline</h4>
+        <p>Visitors browse tours, use the search filters, view departure dates — and leave. There is no real-time layer that converts that intent into a consultant conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION 1 -->
+<section id="sol-website" class="alt">
+  <div class="section-inner">
+    <div class="sol-header">
+      <div class="sol-num">01</div>
+      <div class="sol-meta">
+        <div class="eyebrow">Website AI Agent · Piper on tripadeal.com.au</div>
+        <h2>Capture the midnight tour browser <em>before they leave.</em></h2>
+        <p>AI website agent · routes enquiries into Salesforce CRM in real time</p>
+      </div>
+    </div>
+
+    <div class="info-cols">
+      <div class="info-col">
+        <h3>What it does</h3>
+        <p>Piper monitors visitor behaviour on Trip A Deal's website — pages viewed, tours searched, departure filters used, time on site, return visits. When a visitor shows buying intent, Piper engages in chat or voice, qualifies them with scripted questions, and books a call with the right travel consultant's calendar.</p>
+        <p style="margin-top: 0.75rem;">Visitors who leave without booking get an immediate personalised follow-up email. Every conversation is logged to Salesforce with full context. <strong>The consultant receives a warm, pre-qualified lead — not a cold form fill.</strong></p>
+      </div>
+      <div class="info-col">
+        <h3>Why it matters</h3>
+        <p>Trip A Deal has strong organic and paid traffic. The drop-off is on the website, at night, on weekends. A customer comparing Fiji packages at 10pm will not call a consultant in the morning. They'll book with whoever engaged them in the moment.</p>
+        <ul>
+          <li>Works 24/7 — no consultants rostered on</li>
+          <li>Qualifies against Trip A Deal's own criteria (destination, budget, travel dates, group size)</li>
+          <li>Books directly into consultant calendars</li>
+          <li>All conversations logged to Salesforce automatically</li>
+          <li>Full context shared with consultant before the call</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Animation 1 -->
+    <div class="anim-box" id="anim1">
+      <div class="anim-header">
+        <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+        <span class="title">Animation · The 10pm Fiji researcher</span>
+        <button class="replay-btn" onclick="replayAnim(1)">↺ Replay</button>
+      </div>
+      <div class="anim-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;">
+          <!-- Chat Window -->
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--tad-text-muted);margin-bottom:0.5rem;">tripadeal.com.au · 10:14 pm</div>
+            <div class="chat-window">
+              <div class="chat-header">
+                <div class="chat-avatar">P</div>
+                <div>
+                  <div class="chat-name">Piper · Trip A Deal</div>
+                  <div class="chat-sub">Travel specialist · Online now</div>
+                </div>
+              </div>
+              <div class="chat-body" id="chat1">
+                <div class="bubble bot" id="b1_1">Hi! I can see you're comparing our Fiji packages — the 10-night option is incredibly popular right now. Want me to check availability for your dates?</div>
+                <div class="bubble user" id="b1_2">Yes — thinking late August, 2 adults</div>
+                <div class="bubble bot" id="b1_3">Perfect timing — August is beautiful in Fiji. Budget range around $3K–$5K per person?</div>
+                <div class="bubble user" id="b1_4">Around that, yeah</div>
+                <div class="booking-card" id="b1_5">
+                  <div class="bk-title">📅 Book a call with Sarah</div>
+                  <div class="bk-row">Tomorrow · Thu 29 May · 9:00am</div>
+                  <div class="bk-row" style="color:var(--tad-text-muted)">Fiji Packages Specialist</div>
+                  <div class="bk-cta">Confirm booking</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Salesforce record -->
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--tad-text-muted);margin-bottom:0.5rem;">Salesforce CRM · Consultant view</div>
+            <div style="background:white;border:1px solid var(--tad-sand-mid);border-radius:var(--radius);padding:1rem;" id="sfdc1" style="opacity:0">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--tad-sky);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.85rem;color:var(--tad-sky-dark);">JM</div>
+                <div>
+                  <div style="font-weight:600;font-size:0.9rem;">Jamie M.</div>
+                  <div style="font-size:0.75rem;color:var(--tad-text-muted);">Pre-qualified · Website</div>
+                </div>
+                <div style="margin-left:auto;background:var(--tad-green-bg);color:var(--tad-green);font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:20px;">Warm</div>
+              </div>
+              <div style="border-top:1px solid var(--tad-sand-mid);padding-top:10px;display:flex;flex-direction:column;gap:5px;">
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;"><span style="color:var(--tad-text-muted);">Destination</span><span style="font-weight:500;">Fiji (10-night)</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;"><span style="color:var(--tad-text-muted);">Travel dates</span><span style="font-weight:500;">Late August</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;"><span style="color:var(--tad-text-muted);">Party</span><span style="font-weight:500;">2 adults</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;"><span style="color:var(--tad-text-muted);">Budget</span><span style="font-weight:500;">~$3K–5K pp</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;"><span style="color:var(--tad-text-muted);">Meeting</span><span style="font-weight:500;color:var(--tad-orange);">Thu 9:00am ✓</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenario-pair" style="margin-top:1.25rem;">
+          <div class="scenario">
+            <div class="scenario-tag before">Before — without Piper</div>
+            <div class="scenario-content">
+              <p>Visitor browses Fiji packages for 18 minutes at 10pm. <strong>No engagement.</strong> Fills in a contact form. Lead sits in the queue overnight. Consultant calls at 10am — customer has already booked with a competitor at 11pm.</p>
+            </div>
+          </div>
+          <div class="scenario">
+            <div class="scenario-tag after">After — with Piper</div>
+            <div class="scenario-content">
+              <p>Piper engages at the moment of intent. Qualifies in 4 messages. <strong>Meeting booked for 9am Thursday.</strong> Consultant walks in with destination, dates, budget, and context — fully prepared for a warm conversation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="req-grid">
+      <div class="req-card"><div class="req-label">Time to live</div><div class="req-val">30 days</div></div>
+      <div class="req-card"><div class="req-label">Complexity</div><div class="req-val">Low – Medium</div></div>
+      <div class="req-card"><div class="req-label">Prerequisites</div><div class="req-val">Salesforce CRM · Website access</div></div>
+      <div class="req-card"><div class="req-label">Model</div><div class="req-val">Buy + configure</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION 2 -->
+<section id="sol-nurture">
+  <div class="section-inner">
+    <div class="sol-header">
+      <div class="sol-num">02</div>
+      <div class="sol-meta">
+        <div class="eyebrow">AI Lead Nurture · Piper in the inbox</div>
+        <h2>Follow up every lead — <em>every time, instantly.</em></h2>
+        <p>AI email nurture agent · native inside Salesforce · works every lead regardless of intent level</p>
+      </div>
+    </div>
+
+    <div class="info-cols">
+      <div class="info-col">
+        <h3>What it does</h3>
+        <p>Piper runs automated, 1:1 personalised email follow-up for every lead in Salesforce — whether they downloaded a brochure, registered for a webinar, attended a travel expo, or enquired about a specific departure. It sends, watches for replies, answers questions from an approved knowledge library, and books a call when the lead is ready.</p>
+        <p style="margin-top: 0.75rem;">Your consultants only get involved when there's a conversation worth having. <strong>Every interaction is logged in Salesforce automatically.</strong></p>
+      </div>
+      <div class="info-col">
+        <h3>Why it matters</h3>
+        <p>A consultant receives 20+ leads on Monday. By Friday they've spoken to four. Sixteen go cold — three of whom were ready to book, they just needed a timely nudge and an answer to one question about inclusions.</p>
+        <ul>
+          <li>Instant first-touch — within minutes of lead creation</li>
+          <li>Personalised by destination, intent, and engagement history</li>
+          <li>Answers FAQs (inclusions, visa, group sizes, departure dates)</li>
+          <li>Re-engages event and expo leads with post-event content</li>
+          <li>Escalates to consultant the moment a meeting is requested</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Animation 2 -->
+    <div class="anim-box" id="anim2">
+      <div class="anim-header">
+        <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+        <span class="title">Animation · One lead, one week — without vs. with Piper</span>
+        <button class="replay-btn" onclick="replayAnim(2)">↺ Replay</button>
+      </div>
+      <div class="anim-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;">
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#991B1B;margin-bottom:0.6rem;padding:4px 10px;background:#FEE2E2;border-radius:6px;display:inline-block;">Without Piper</div>
+            <div class="timeline" id="tl_bad">
+              <div class="tl-item" id="bad1"><div class="time">Mon — Lead enquires about Europe tours</div><div class="event">Lead enters Salesforce. Consultant has 18 other leads open.</div></div>
+              <div class="tl-item" id="bad2"><div class="time">Tue–Wed</div><div class="event">No outreach. Lead checks two other travel agencies.</div></div>
+              <div class="tl-item" id="bad3"><div class="time">Thu</div><div class="event">Consultant sends a generic "following up" email. No reply.</div></div>
+              <div class="tl-item final" id="bad4"><div class="time">Fri</div><div class="event"><strong>Lead books a 14-night Europe tour with a competitor.</strong></div></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--tad-green);margin-bottom:0.6rem;padding:4px 10px;background:var(--tad-green-bg);border-radius:6px;display:inline-block;">With Piper</div>
+            <div class="email-sequence" id="email_good">
+              <div class="email-card" id="e1">
+                <div class="email-meta">
+                  <div class="email-from">Piper · Trip A Deal</div>
+                  <div class="email-time">Mon 9:04am</div>
+                </div>
+                <div class="email-subj">Your Europe highlights enquiry — here's what's available</div>
+                <div class="email-prev">Hi Alex, I saw your interest in our Europe packages — our 14-night Grand Tour has 4 spots left in October...</div>
+              </div>
+              <div class="email-card email-reply" id="e2">
+                <div class="email-meta">
+                  <div class="email-from">Alex replies</div>
+                  <div class="email-time">Mon 8:41pm</div>
+                </div>
+                <div class="email-subj">Re: Europe highlights</div>
+                <div class="email-prev">Does the price include flights from Sydney?</div>
+              </div>
+              <div class="email-card" id="e3">
+                <div class="email-meta">
+                  <div class="email-from">Piper · Trip A Deal</div>
+                  <div class="email-time">Mon 8:42pm</div>
+                </div>
+                <div class="email-subj">Re: Europe highlights</div>
+                <div class="email-prev">Yes! All prices include return economy from Sydney. I can also lock in a call with our Europe specialist to walk through inclusions...</div>
+              </div>
+              <div class="outcome-pill" id="epill">
+                ✓ Meeting booked Thu 11am · 14-night Europe tour · $6,200 pp
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenario-pair" style="margin-top:1.25rem;">
+          <div class="scenario">
+            <div class="scenario-tag before">Before</div>
+            <div class="scenario-content">
+              <p>Consultant receives 20 leads Monday. Speaks to 4 by Friday. <strong>Sixteen go cold.</strong> Three of them were ready to book — they just needed one question answered.</p>
+            </div>
+          </div>
+          <div class="scenario">
+            <div class="scenario-tag after">After</div>
+            <div class="scenario-content">
+              <p>Piper engages every lead within minutes. Answers questions 24/7. Books the call when intent is confirmed. <strong>Same consultant, 3–5× more qualified conversations per week.</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="req-grid">
+      <div class="req-card"><div class="req-label">Pilot timeline</div><div class="req-val">2–4 weeks</div></div>
+      <div class="req-card"><div class="req-label">Complexity</div><div class="req-val">Medium</div></div>
+      <div class="req-card"><div class="req-label">Prerequisites</div><div class="req-val">Salesforce CRM · Email domain · Knowledge base</div></div>
+      <div class="req-card"><div class="req-label">Model</div><div class="req-val">Buy + configure</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION 3 -->
+<section id="sol-conversion" class="alt">
+  <div class="section-inner">
+    <div class="sol-header">
+      <div class="sol-num">03</div>
+      <div class="sol-meta">
+        <div class="eyebrow">Instant Lead Conversion · Sales-ready buyers</div>
+        <h2>Qualify and convert high-intent buyers <em>in the moment.</em></h2>
+        <p>Real-time qualification and meeting booking · eliminates lead lag · bypasses manual SDR queues</p>
+      </div>
+    </div>
+
+    <div class="info-cols">
+      <div class="info-col">
+        <h3>What it does</h3>
+        <p>For visitors who take high-intent actions — submitting a "Request a quote" form, clicking through from a promotional email, or viewing a specific departure date multiple times — Piper instantly qualifies and offers a meeting. No queue. No waiting 90 minutes for a human callback.</p>
+        <p style="margin-top: 0.75rem;">If the visitor leaves before booking, Piper sends an instant bespoke follow-up email with a one-click meeting link. <strong>Speed-to-lead drops from hours to under 2 minutes.</strong></p>
+      </div>
+      <div class="info-col">
+        <h3>Why it matters</h3>
+        <p>78% of buyers choose the vendor that responds first. In travel, this is even more acute — a customer who has decided to book will book with whoever answers them first, not whoever has the best package.</p>
+        <ul>
+          <li>Instant qualification on form submit — no queue</li>
+          <li>Live meeting booker shown in the moment of highest intent</li>
+          <li>If they leave, bespoke follow-up within 90 seconds</li>
+          <li>Routes to the right consultant (destination specialist)</li>
+          <li>Full context passed to consultant before the call</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="anim-box" id="anim3">
+      <div class="anim-header">
+        <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+        <span class="title">Animation · "Request a quote" — form submit to booked call</span>
+        <button class="replay-btn" onclick="replayAnim(3)">↺ Replay</button>
+      </div>
+      <div class="anim-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;">
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--tad-text-muted);margin-bottom:0.5rem;">Step 1 — Form submitted</div>
+            <div style="background:white;border:1px solid var(--tad-sand-mid);border-radius:var(--radius);padding:1.1rem;">
+              <div style="font-size:0.85rem;font-weight:600;margin-bottom:8px;">Request a quote</div>
+              <div style="background:var(--tad-sand);border-radius:6px;padding:6px 10px;font-size:0.8rem;color:var(--tad-text-muted);margin-bottom:6px;">Sarah P. · sarah.p@email.com</div>
+              <div style="background:var(--tad-sand);border-radius:6px;padding:6px 10px;font-size:0.8rem;color:var(--tad-text-muted);margin-bottom:6px;">Japan highlights · 12 nights · Apr 2026</div>
+              <div style="background:var(--tad-sand);border-radius:6px;padding:6px 10px;font-size:0.8rem;color:var(--tad-text-muted);margin-bottom:10px;">2 adults · budget ~$4,500 pp</div>
+              <div style="background:var(--tad-orange);color:white;text-align:center;padding:7px;border-radius:6px;font-size:0.82rem;font-weight:500;">✓ Submitted</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--tad-text-muted);margin-bottom:0.5rem;">Step 2 — Piper responds instantly</div>
+            <div class="chat-window">
+              <div class="chat-header">
+                <div class="chat-avatar">P</div>
+                <div>
+                  <div class="chat-name">Piper · Trip A Deal</div>
+                  <div class="chat-sub">Japan specialist team</div>
+                </div>
+              </div>
+              <div class="chat-body" id="chat3">
+                <div class="bubble bot" id="b3_1">Hi Sarah! Your Japan enquiry just came through — we have our specialist Mark available for a 20-minute call. He's done this itinerary 40+ times.</div>
+                <div class="booking-card" id="b3_2">
+                  <div class="bk-title">📅 Book with Mark · Japan Specialist</div>
+                  <div class="bk-row">Today 3:30pm · Or tomorrow 9am</div>
+                  <div class="bk-row" style="color:var(--tad-text-muted);">20 min · Video or phone</div>
+                  <div class="bk-cta">Book 3:30pm today</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenario-pair" style="margin-top:1.25rem;">
+          <div class="scenario">
+            <div class="scenario-tag before">Before</div>
+            <div class="scenario-content">
+              <p>Form submitted. Lead enters a queue. <strong>Consultant calls back next morning.</strong> Customer has already booked a competitor's Japan package at 11pm the night before.</p>
+            </div>
+          </div>
+          <div class="scenario">
+            <div class="scenario-tag after">After</div>
+            <div class="scenario-content">
+              <p>Form submitted. Piper responds in under 90 seconds. Meeting booked for same day. <strong>Consultant closes the deal — same afternoon, full context, warm lead.</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="req-grid">
+      <div class="req-card"><div class="req-label">Pilot timeline</div><div class="req-val">2–3 weeks</div></div>
+      <div class="req-card"><div class="req-label">Complexity</div><div class="req-val">Low</div></div>
+      <div class="req-card"><div class="req-label">Prerequisites</div><div class="req-val">Salesforce CRM · Website forms</div></div>
+      <div class="req-card"><div class="req-label">Model</div><div class="req-val">Buy + configure</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVISIONING -->
+<section id="provision">
+  <div class="section-inner">
+    <div class="section-eyebrow">Before you go live</div>
+    <h2 class="section-title">Provisioning <em>requirements</em></h2>
+    <p class="section-lead">Qualified is a buy-and-configure product. The items below are what Trip A Deal needs to have in place — or complete — before or during the 30-day implementation. Most are low effort; they're listed in likely sequence.</p>
+
+    <div class="provision-grid">
+      <div class="provision-item">
+        <div class="provision-num">1</div>
+        <div>
+          <h4>Salesforce CRM access</h4>
+          <p>Qualified connects natively to Salesforce. You'll need an active Salesforce org with Leads or Contacts objects in use. An API user account with appropriate permissions is required during setup. If Trip A Deal uses a custom CRM or HubSpot, a custom integration path is available but adds ~2 weeks.</p>
+        </div>
+      </div>
+      <div class="provision-item">
+        <div class="provision-num">2</div>
+        <div>
+          <h4>Website JavaScript snippet</h4>
+          <p>A single JS tag is added to tripadeal.com.au (similar to Google Analytics). This powers the website agent (Solution 01 and 03). Requires access to the site's tag management system (Google Tag Manager preferred) or developer deployment. No CMS changes needed.</p>
+        </div>
+      </div>
+      <div class="provision-item">
+        <div class="provision-num">3</div>
+        <div>
+          <h4>Sending domain authentication</h4>
+          <p>For Piper to send emails on behalf of Trip A Deal (Solution 02), a subdomain needs to be configured (e.g. piper.tripadeal.com.au) with SPF, DKIM, and DMARC records. This is a one-time DNS change, typically completed by your IT team in under an hour.</p>
+        </div>
+      </div>
+      <div class="provision-item">
+        <div class="provision-num">4</div>
+        <div>
+          <h4>Knowledge base content</h4>
+          <p>Piper answers questions from an approved knowledge library. You provide the source content — FAQs, product fact sheets, inclusion lists, visa information, departure details — and the Qualified team ingests and structures it during onboarding. No technical work required from Trip A Deal.</p>
+        </div>
+      </div>
+      <div class="provision-item">
+        <div class="provision-num">5</div>
+        <div>
+          <h4>Consultant calendar integration</h4>
+          <p>For meeting booking to work, consultant calendars need to be connected. Qualified integrates with Google Calendar and Microsoft 365 / Outlook natively. Each consultant connects their own calendar via OAuth — takes under 5 minutes per person. Routing rules (destination specialist, availability) are configured in Qualified's Agent Studio.</p>
+        </div>
+      </div>
+      <div class="provision-item">
+        <div class="provision-num">6</div>
+        <div>
+          <h4>Brand voice and guardrails</h4>
+          <p>Piper operates within boundaries you define — tone, products in scope, what she will and won't discuss, escalation rules. The Qualified onboarding team runs a 2-session configuration workshop (~3hrs total) to set this up. No technical knowledge required from Trip A Deal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--tad-orange-bg);border:1px solid rgba(232,82,26,0.2);border-radius:var(--radius-lg);padding:1.5rem;margin-top:1.5rem;">
+      <div style="font-weight:600;font-size:0.95rem;margin-bottom:0.5rem;color:var(--tad-orange);">Note on Salesforce as a prerequisite</div>
+      <p style="font-size:0.88rem;color:var(--tad-text-muted);line-height:1.7;">Qualified is built natively on Salesforce and is most powerful when Salesforce CRM is the system of record for leads and customers. If Trip A Deal does not currently use Salesforce, a lightweight Salesforce Sales Cloud org can be provisioned specifically to support Qualified, without replacing any existing CRM. The Salesforce team can scope this as a parallel workstream.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY TABLE -->
+<section class="alt" style="padding-bottom: 5rem;">
+  <div class="section-inner">
+    <div class="section-eyebrow">At a glance</div>
+    <h2 class="section-title">Three solutions, <em>one funnel.</em></h2>
+    <p class="section-lead">Each addresses a distinct drop-off point — from anonymous website visitor through to consultant-ready qualified lead. They can be deployed independently or together.</p>
+    <div style="overflow-x:auto;">
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Solution</th>
+            <th>Funnel stage</th>
+            <th>Trip A Deal use case</th>
+            <th>Time to live</th>
+            <th>Complexity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>01 · Website AI Agent</strong></td>
+            <td>Anonymous visitor → qualified lead</td>
+            <td>Midnight tour browsers, holiday researchers, package comparers</td>
+            <td>30 days</td>
+            <td><span class="tag tag-low">Low – Med</span></td>
+          </tr>
+          <tr>
+            <td><strong>02 · Lead Nurture</strong></td>
+            <td>Lead in CRM → meeting booked</td>
+            <td>Brochure downloads, expo leads, event registrants, enquiries not yet converted</td>
+            <td>2–4 weeks (pilot)</td>
+            <td><span class="tag tag-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>03 · Instant Conversion</strong></td>
+            <td>High-intent action → same-day call</td>
+            <td>Form submits, quote requests, repeat departure viewers, promotional email click-throughs</td>
+            <td>2–3 weeks</td>
+            <td><span class="tag tag-low">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-brand">Trip A Deal · Salesforce</div>
+  <div>Qualified from Salesforce — Confidential and Proprietary · May 2026</div>
+  <div>Built for Trip A Deal · Not for distribution</div>
+</footer>
+
+<script>
+  function seq(items, baseDelay, step, onDone) {
+    items.forEach((el, i) => {
+      if (!el) return;
+      setTimeout(() => {
+        el.classList.add('show');
+        if (i === items.length - 1 && onDone) onDone();
+      }, baseDelay + i * step);
+    });
+  }
+
+  function runAnim1() {
+    const els = ['b1_1','b1_2','b1_3','b1_4','b1_5'].map(id => document.getElementById(id));
+    const sfdc = document.getElementById('sfdc1');
+    els.forEach(e => { if(e) e.classList.remove('show'); });
+    if(sfdc) { sfdc.style.opacity = '0'; sfdc.style.transform = 'translateY(8px)'; sfdc.style.transition = 'opacity 0.4s, transform 0.4s'; }
+    seq(els, 400, 900, () => {
+      setTimeout(() => {
+        if(sfdc) { sfdc.style.opacity = '1'; sfdc.style.transform = 'translateY(0)'; }
+      }, 500);
+    });
+  }
+
+  function runAnim2() {
+    const bad = ['bad1','bad2','bad3','bad4'].map(id => document.getElementById(id));
+    const good = ['e1','e2','e3','epill'].map(id => document.getElementById(id));
+    [...bad, ...good].forEach(e => { if(e) e.classList.remove('show'); });
+    seq(bad, 300, 700);
+    seq(good, 500, 850);
+  }
+
+  function runAnim3() {
+    const els = ['b3_1','b3_2'].map(id => document.getElementById(id));
+    els.forEach(e => { if(e) e.classList.remove('show'); });
+    seq(els, 600, 1100);
+  }
+
+  function replayAnim(n) {
+    if(n===1) runAnim1();
+    else if(n===2) runAnim2();
+    else if(n===3) runAnim3();
+  }
+
+  // Intersection Observer to auto-start animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        const id = entry.target.id;
+        if(id==='anim1') runAnim1();
+        else if(id==='anim2') runAnim2();
+        else if(id==='anim3') runAnim3();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  ['anim1','anim2','anim3'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) observer.observe(el);
+  });
+</script>
+</body>
+</html>
